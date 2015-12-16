@@ -20,7 +20,7 @@ import droid.frame.Config;
  * @author coffee <br>
  *         2013-1-11下午3:15:58
  */
-public abstract class Log {
+public abstract class Log{
 
 	// 相对于sdcard的目录
 	private static final String LOG_FILE = "log.txt";
