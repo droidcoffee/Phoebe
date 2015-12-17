@@ -14,32 +14,33 @@ import android.os.Handler;
  */
 public class PhoebeApp extends Application {
 	/**
-	 *  app的上下文的引用，主要用于调用系统api的时候传参
+	 * app的上下文的引用，主要用于调用系统api的时候传参
 	 */
 	private static Context context;
 	/**
 	 * 全局Handler 一般一个app只需要定义一个Handler就搞定了
 	 */
 	private static Handler handler;
-	
-	
+
 	@Override
 	public void onCreate() {
 		super.onCreate();
 		onCreateHandler();
+		// 初始化app配置信息
+		PhoebeConfig.init();
 	}
-	
+
 	/**
 	 * 子类可以根据具体情况重写handler的实现
 	 */
-	protected void onCreateHandler(){
+	protected void onCreateHandler() {
 		handler = new Handler();
 	}
-	
+
 	public static Context getContext() {
 		return context;
 	}
-	
+
 	public static Handler getHandler() {
 		return handler;
 	}
