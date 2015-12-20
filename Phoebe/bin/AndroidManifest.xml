@@ -7,12 +7,13 @@
         android:minSdkVersion="15"
         android:targetSdkVersion="19"/>
     <application
+        android:name="phoebe.frame.PhoebeApp"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name="phoebe.sample.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
