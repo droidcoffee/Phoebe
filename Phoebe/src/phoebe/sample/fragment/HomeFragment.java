@@ -2,6 +2,7 @@ package phoebe.sample.fragment;
 
 import phoebe.frame.R;
 import phoebe.frame.fragment.BaseFragment;
+import phoebe.frame.titlebar.TitleRes;
 import phoebe.sample.activity.TitleDemoActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,8 +16,22 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View layout = inflater.inflate(R.layout.home, container, false);
 		super.onCreateView(inflater, container, savedInstanceState);
-		layout.findViewById(R.id.home_title_sample).setOnClickListener(this);
 		return layout;
+	}
+
+	@Override
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+
+		
+		
+		findViewById(R.id.home_title_sample).setOnClickListener(this);
+
+		TitleRes left = null;
+		TitleRes middle = new TitleRes("首页标题");
+		TitleRes right = null;
+		
+		setTitle(left, middle, right);
 	}
 
 	@Override
