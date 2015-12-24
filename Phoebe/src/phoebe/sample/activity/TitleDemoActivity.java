@@ -1,11 +1,11 @@
 package phoebe.sample.activity;
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
 import phoebe.frame.R;
 import phoebe.frame.activity.BaseActivity;
 import phoebe.frame.titlebar.TitleRes;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 /**
  * title 演示
@@ -30,19 +30,22 @@ public class TitleDemoActivity extends BaseActivity {
 		TitleRes left = new TitleRes("left", new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				showToast("click left");
+				Toast.makeText(TitleDemoActivity.this, "click left", Toast.LENGTH_SHORT).show();
+				//showToast("click left");
 			}
 		});
 		TitleRes middle = new TitleRes("middle", new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				showToast("click middle");
+				Toast.makeText(TitleDemoActivity.this, "click middle", Toast.LENGTH_SHORT).show();
+				//showToast("click middle");
 			}
 		});
 		TitleRes right = new TitleRes("right", new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				showToast("click right");
+				Toast.makeText(TitleDemoActivity.this, "click right", Toast.LENGTH_SHORT).show();
+				//showToast("click right");
 			}
 		});
 		//
