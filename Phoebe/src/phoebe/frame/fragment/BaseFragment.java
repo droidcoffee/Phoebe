@@ -4,6 +4,7 @@ import phoebe.frame.titlebar.TitleMgr;
 import phoebe.frame.titlebar.TitleRes;
 import phoebe.frame.util.Log;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,5 +35,11 @@ public class BaseFragment extends Fragment {
 
 	protected View findViewById(int id) {
 		return getView().findViewById(id);
+	}
+
+	protected void startActivity(Class<?> cls) {
+		Intent intent = new Intent();
+		intent.setClass(getActivity(), cls);
+		super.startActivity(intent);
 	}
 }
