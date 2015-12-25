@@ -7,7 +7,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 /**
- * BaseDialog的子类
+ * 项目中用到的对话框的基础父类
  * 
  * @author coffee<br>
  *         2015-12-25下午4:28:34

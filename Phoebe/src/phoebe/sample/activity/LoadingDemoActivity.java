@@ -1,7 +1,6 @@
 package phoebe.sample.activity;
 
 import phoebe.frame.activity.BaseActivity;
-import phoebe.frame.dialog.AppLoading;
 import android.os.Bundle;
 
 /**
@@ -15,10 +14,12 @@ public class LoadingDemoActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+//		
+//		AppLoading loading = new AppLoading(getContext());
+//		
+//		loading.show();
 		
-		AppLoading loading = new AppLoading(getContext());
-		
-		loading.show();
+		showLoadingDialog("加载中");
 	}
 	
 }
