@@ -1,10 +1,12 @@
 package phoebe.frame.activity;
 
+import phoebe.frame.dialog.AppLoading;
 import phoebe.frame.titlebar.TitleMgr;
 import phoebe.frame.titlebar.TitleRes;
 import phoebe.frame.util.ActivityMgr;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -17,6 +19,8 @@ import android.widget.Toast;
 public abstract class BaseActivity extends Activity {
 
 	private TitleMgr titleMgr;
+
+	private AppLoading mLoadingDialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +42,34 @@ public abstract class BaseActivity extends Activity {
 		titleMgr.setTitle(leftTitle, middleTitle, rightTitle);
 	}
 
+	protected void showLoadingDialog(String message) {
+		if (mLoadingDialog != null) {
+			mLoadingDialog.setMessage(message);
+		} else {
+			mLoadingDialog = new AppLoading(getContext());
+			mLoadingDialog.setMessage(message);
+			mLoadingDialog.show();
+		}
+	}
+
+	protected void cancelLoadingDialog() {
+		if (mLoadingDialog != null) {
+			mLoadingDialog.cancel();
+		}
+	}
+
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
 		ActivityMgr.remove(this);
+		cancelLoadingDialog();
+		mLoadingDialog = null;
+	}
+
+	protected void startActivity(Class<?> cls) {
+		Intent intent = new Intent();
+		intent.setClass(getContext(), cls);
+		super.startActivity(intent);
 	}
 
 	protected Context getContext() {
