@@ -42,4 +42,22 @@ public class Log {
 		return msgOrTag;
 	}
 
+	public static void i(Object tag, Object msg) {
+		if (open == false) {
+			return;
+		}
+		tag = handleMsgOrTag(tag);
+		msg = handleMsgOrTag(msg);
+		android.util.Log.i(String.valueOf(tag), String.valueOf(msg));
+	}
+
+	public static void e(Object tag, Object msg, Throwable throwable) {
+		if (open == false) {
+			return;
+		}
+		tag = handleMsgOrTag(tag);
+		msg = handleMsgOrTag(msg);
+		android.util.Log.e(String.valueOf(tag), String.valueOf(msg), throwable);
+	}
+
 }
