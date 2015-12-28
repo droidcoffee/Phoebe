@@ -3,6 +3,7 @@ package phoebe.sample.fragment;
 import phoebe.frame.R;
 import phoebe.frame.fragment.BaseFragment;
 import phoebe.frame.titlebar.TitleRes;
+import phoebe.sample.activity.HttpDemoActivity;
 import phoebe.sample.activity.LoadingDemoActivity;
 import phoebe.sample.activity.TitleDemoActivity;
 import android.os.Bundle;
@@ -28,6 +29,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 		// loading
 		findViewById(R.id.home_loading_sample).setOnClickListener(this);
 
+		findViewById(R.id.home_http_sample).setOnClickListener(this);
+
 		TitleRes left = null;
 		TitleRes middle = new TitleRes("首页标题");
 		TitleRes right = null;
@@ -43,6 +46,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 			break;
 		case R.id.home_loading_sample:
 			startActivity(LoadingDemoActivity.class);
+			break;
+		case R.id.home_http_sample:
+			startActivity(HttpDemoActivity.class);
 			break;
 		}
 
