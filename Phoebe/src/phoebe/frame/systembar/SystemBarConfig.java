@@ -17,7 +17,10 @@ import android.view.WindowManager;
 public class SystemBarConfig {
 
 	/**
-	 * 设置状态栏样式, 可以在 Activity#onCreate之前直接调用
+	 * 设置状态栏样式, 可以在 Activity#onCreate之前直接调用 <br>
+	 * 需要注意一个问题: Activity中不能requestWindowFeature(Window.FEATURE_NO_TITLE) <br>
+	 * 同时application的theme中也不能设置<item name="android:windowNoTitle">true</item> <br>
+	 * 如果之前遗留的代码已经设置了以上属性。那么layout的最顶层view需要加android:fitsSystemWindows=true
 	 * 
 	 * @param context
 	 * @param statusBarResourceId
