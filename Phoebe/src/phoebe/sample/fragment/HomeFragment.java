@@ -5,6 +5,7 @@ import phoebe.frame.fragment.BaseFragment;
 import phoebe.frame.titlebar.TitleRes;
 import phoebe.sample.activity.HttpDemoActivity;
 import phoebe.sample.activity.LoadingDemoActivity;
+import phoebe.sample.activity.SystemBarActivity;
 import phoebe.sample.activity.TitleDemoActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,11 +27,12 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
 		// title演示
 		findViewById(R.id.home_title_sample).setOnClickListener(this);
+		// 沉浸式状态栏
+		findViewById(R.id.home_systembar_sample).setOnClickListener(this);
 		// loading
 		findViewById(R.id.home_loading_sample).setOnClickListener(this);
-
+		// 网络请求
 		findViewById(R.id.home_http_sample).setOnClickListener(this);
-
 		TitleRes left = null;
 		TitleRes middle = new TitleRes("首页标题");
 		TitleRes right = null;
@@ -43,6 +45,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 		switch (v.getId()) {
 		case R.id.home_title_sample:
 			startActivity(TitleDemoActivity.class);
+			break;
+		case R.id.home_systembar_sample:
+			startActivity(SystemBarActivity.class);
 			break;
 		case R.id.home_loading_sample:
 			startActivity(LoadingDemoActivity.class);

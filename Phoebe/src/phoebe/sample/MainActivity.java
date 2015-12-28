@@ -2,6 +2,7 @@ package phoebe.sample;
 
 import phoebe.frame.R;
 import phoebe.frame.activity.BaseActivity;
+import phoebe.frame.systembar.SystemBarConfig;
 import phoebe.frame.util.Log;
 import phoebe.sample.fragment.HomeFragment;
 import phoebe.sample.fragment.SettingFragment;
@@ -42,7 +43,7 @@ public class MainActivity extends BaseActivity implements PanelSlideListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		instance = this;
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		SystemBarConfig.setWindowFlags(this);//
 		super.onCreate(savedInstanceState);
 		final Window win = getWindow();
 		win.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
