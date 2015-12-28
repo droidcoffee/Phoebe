@@ -31,11 +31,12 @@ public final class R {
         public static final int app_title_right_image=0x7f070009;
         public static final int app_title_right_switcher=0x7f070007;
         public static final int app_title_right_text=0x7f070008;
+        public static final int home_http_sample=0x7f07000c;
         public static final int home_loading_sample=0x7f07000b;
         public static final int home_title_sample=0x7f07000a;
-        public static final int slidingpane_content=0x7f07000e;
-        public static final int slidingpane_menu=0x7f07000d;
-        public static final int slidingpanellayout=0x7f07000c;
+        public static final int slidingpane_content=0x7f07000f;
+        public static final int slidingpane_menu=0x7f07000e;
+        public static final int slidingpanellayout=0x7f07000d;
     }
     public static final class layout {
         public static final int app_loading=0x7f030000;
