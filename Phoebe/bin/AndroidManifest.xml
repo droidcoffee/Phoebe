@@ -25,5 +25,6 @@
         <activity android:name="phoebe.sample.activity.LoadingDemoActivity"/>
         <activity android:name="phoebe.sample.activity.HttpDemoActivity"/>
         <activity android:name="phoebe.sample.activity.SystemBarActivity"/>
+        <activity android:name="phoebe.sample.activity.JsonDemoActivity"/>
     </application>
 </manifest>

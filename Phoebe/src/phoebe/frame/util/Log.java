@@ -50,6 +50,15 @@ public class Log {
 		msg = handleMsgOrTag(msg);
 		android.util.Log.i(String.valueOf(tag), String.valueOf(msg));
 	}
+	
+	public static void w(Object tag, Object msg, Throwable throwable) {
+		if (open == false) {
+			return;
+		}
+		tag = handleMsgOrTag(tag);
+		msg = handleMsgOrTag(msg);
+		android.util.Log.w(String.valueOf(tag), String.valueOf(msg), throwable);
+	}
 
 	public static void e(Object tag, Object msg, Throwable throwable) {
 		if (open == false) {
@@ -59,5 +68,4 @@ public class Log {
 		msg = handleMsgOrTag(msg);
 		android.util.Log.e(String.valueOf(tag), String.valueOf(msg), throwable);
 	}
-
 }
