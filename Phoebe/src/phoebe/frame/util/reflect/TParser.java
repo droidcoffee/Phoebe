@@ -13,7 +13,7 @@ import java.util.Locale;
  */
 public class TParser {
 	/**
-	 * 判断给定的field名是否存在于指定的class
+	 * 判断给定的string是否是指定的class字段
 	 * 
 	 * @param fieldName
 	 * @return
@@ -56,7 +56,10 @@ public class TParser {
 	}
 
 	/**
-	 * 获取某个字段的值
+	 * 获取对象obj的字段field的值
+	 * 
+	 * @param obj
+	 * @param field
 	 */
 	public static <T> Object getValue(T obj, Field field) {
 		try {
@@ -68,6 +71,14 @@ public class TParser {
 		return null;
 	}
 
+	/**
+	 * 赋值<br>
+	 * 
+	 * @param obj
+	 * @param fieldName
+	 * @param value
+	 * @return
+	 */
 	public static Object setValue(Object obj, String fieldName, Object value) {
 		try {
 			if (obj == null || value == null) {
@@ -75,23 +86,7 @@ public class TParser {
 			}
 			Field field = obj.getClass().getDeclaredField(fieldName);
 			if (field != null) {
-				Object newVal = value;
-				if (field.getType().isPrimitive()) {
-					String type = field.getType().toString();
-					if (type.contains("long")) {
-						newVal = Long.valueOf(value + "");
-					} else if (type.contains("int")) {
-						newVal = Integer.valueOf(value + "");
-					} else if (type.contains("float")) {
-						newVal = Float.valueOf(value + "");
-					} else if (type.contains("double")) {
-						newVal = Double.valueOf(value + "");
-					} else if (type.contains("boolean")) {
-						newVal = Boolean.valueOf(value + "");
-					}
-				} else if (field.getType() == String.class) {
-					newVal = String.valueOf(value);
-				}
+				Object newVal = getValueByType(field, value);
 				String methodName = "set" + fieldName.substring(0, 1).toUpperCase(Locale.getDefault()) + fieldName.substring(1);
 				Method method = obj.getClass().getMethod(methodName, new Class[] { field.getType() });
 				method.invoke(obj, newVal);
@@ -100,6 +95,34 @@ public class TParser {
 			e.printStackTrace();
 		}
 		return obj;
+	}
+
+	/**
+	 * 把值value按照Field的类型进行转型
+	 * 
+	 * @param field
+	 * @param value
+	 * @return
+	 */
+	public static Object getValueByType(Field field, Object value) {
+		Object newVal = value;
+		if (field.getType().isPrimitive()) {
+			String type = field.getType().toString();
+			if (type.contains("long")) {
+				newVal = Long.valueOf(value + "");
+			} else if (type.contains("int")) {
+				newVal = Integer.valueOf(value + "");
+			} else if (type.contains("float")) {
+				newVal = Float.valueOf(value + "");
+			} else if (type.contains("double")) {
+				newVal = Double.valueOf(value + "");
+			} else if (type.contains("boolean")) {
+				newVal = Boolean.valueOf(value + "");
+			}
+		} else if (field.getType() == String.class) {
+			newVal = String.valueOf(value);
+		}
+		return newVal;
 	}
 
 }

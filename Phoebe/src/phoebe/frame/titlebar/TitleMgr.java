@@ -15,7 +15,7 @@ import android.widget.ViewSwitcher;
  * @author coffee <br>
  *         2015-12-24 下午10:26:10
  */
-public class TitleMgr {
+public class TitleMgr implements AppTitle {
 
 	/**
 	 * TitleBar的上下文
@@ -47,13 +47,15 @@ public class TitleMgr {
 	/**
 	 * 初始化title bar
 	 */
-	public void findViewById() {
+	@Override
+	public void initTitle() {
 		titleSwitcher = new ViewSwitcher[3];
 		titleSwitcher[0] = (ViewSwitcher) findViewById(R.id.app_title_left_switcher);
 		titleSwitcher[1] = (ViewSwitcher) findViewById(R.id.app_title_middle_switcher);
 		titleSwitcher[2] = (ViewSwitcher) findViewById(R.id.app_title_right_switcher);
 	}
 
+	@Override
 	public void setTitle(TitleRes leftTitle, TitleRes middleTitle, TitleRes rightTitle) {
 		TitleRes[] reses = new TitleRes[] { leftTitle, middleTitle, rightTitle };
 		for (int i = 0; i < reses.length; i++) {

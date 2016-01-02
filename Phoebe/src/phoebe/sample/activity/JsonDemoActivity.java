@@ -33,12 +33,7 @@ public class JsonDemoActivity extends BaseActivity {
 		case MsgId.json_parser:
 			cancelLoadingDialog();
 			final LoginBean login = new JsonParser().parse(msg.obj + "", LoginBean.class);
-			runOnUiThread(new Runnable() {
-				@Override
-				public void run() {
-					showToast(login.getStatus() + " " + login.getUsername());
-				}
-			});
+			showToast(login.getStatus() + " " + login.getUsername());
 			break;
 		default:
 			break;

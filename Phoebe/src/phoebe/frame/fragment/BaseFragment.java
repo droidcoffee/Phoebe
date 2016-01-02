@@ -1,6 +1,7 @@
 package phoebe.frame.fragment;
 
 import phoebe.frame.dialog.AppLoading;
+import phoebe.frame.titlebar.AppTitle;
 import phoebe.frame.titlebar.TitleMgr;
 import phoebe.frame.titlebar.TitleRes;
 import phoebe.frame.util.Log;
@@ -12,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-public class BaseFragment extends Fragment {
+public class BaseFragment extends Fragment implements AppTitle {
 
 	private TitleMgr titleMgr;
 
@@ -29,8 +30,13 @@ public class BaseFragment extends Fragment {
 		super.onViewCreated(view, savedInstanceState);
 		Log.d("fragment:onCreateView", getView());
 		//
+		initTitle();
+	}
+
+	@Override
+	public void initTitle() {
 		titleMgr = new TitleMgr(getActivity(), getView());
-		titleMgr.findViewById();
+		titleMgr.initTitle();
 	}
 
 	/**
@@ -40,7 +46,8 @@ public class BaseFragment extends Fragment {
 	 * @param middleTitle
 	 * @param rightTitle
 	 */
-	protected void setTitle(TitleRes leftTitle, TitleRes middleTitle, TitleRes rightTitle) {
+	@Override
+	public void setTitle(TitleRes leftTitle, TitleRes middleTitle, TitleRes rightTitle) {
 		titleMgr.setTitle(leftTitle, middleTitle, rightTitle);
 	}
 
@@ -73,7 +80,7 @@ public class BaseFragment extends Fragment {
 	protected void showToast(String message) {
 		Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
 	}
-	
+
 	protected void startActivity(Class<?> cls) {
 		Intent intent = new Intent();
 		intent.setClass(getActivity(), cls);

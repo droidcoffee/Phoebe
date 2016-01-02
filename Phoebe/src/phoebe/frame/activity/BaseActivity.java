@@ -1,6 +1,8 @@
 package phoebe.frame.activity;
 
+import phoebe.frame.PhoebeApp;
 import phoebe.frame.dialog.AppLoading;
+import phoebe.frame.titlebar.AppTitle;
 import phoebe.frame.titlebar.TitleMgr;
 import phoebe.frame.titlebar.TitleRes;
 import phoebe.frame.util.ActivityMgr;
@@ -10,7 +12,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.view.Window;
 import android.widget.Toast;
 
 /**
@@ -19,7 +20,7 @@ import android.widget.Toast;
  * @author coffee <br>
  *         2015-12-17 下午11:27:53
  */
-public abstract class BaseActivity extends Activity implements Handler.Callback{
+public abstract class BaseActivity extends Activity implements Handler.Callback, AppTitle {
 
 	private TitleMgr titleMgr;
 
@@ -28,7 +29,7 @@ public abstract class BaseActivity extends Activity implements Handler.Callback{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		// this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		ActivityMgr.push(this);
 		findViewById();
 	}
@@ -38,11 +39,16 @@ public abstract class BaseActivity extends Activity implements Handler.Callback{
 	}
 
 	/**
-	 * 初始化View
+	 * 初始化title View
 	 */
 	protected void findViewById() {
+		initTitle();
+	}
+
+	@Override
+	public void initTitle() {
 		titleMgr = new TitleMgr(getContext(), findViewById(android.R.id.content));
-		titleMgr.findViewById();
+		titleMgr.initTitle();
 	}
 
 	/**
@@ -52,7 +58,8 @@ public abstract class BaseActivity extends Activity implements Handler.Callback{
 	 * @param middleTitle
 	 * @param rightTitle
 	 */
-	protected void setTitle(TitleRes leftTitle, TitleRes middleTitle, TitleRes rightTitle) {
+	@Override
+	public void setTitle(TitleRes leftTitle, TitleRes middleTitle, TitleRes rightTitle) {
 		titleMgr.setTitle(leftTitle, middleTitle, rightTitle);
 	}
 
@@ -99,7 +106,12 @@ public abstract class BaseActivity extends Activity implements Handler.Callback{
 		return this;
 	}
 
-	protected void showToast(Object message) {
-		Toast.makeText(getContext(), message + "", Toast.LENGTH_SHORT).show();
+	protected void showToast(final Object message) {
+		PhoebeApp.getHandler().post(new Runnable() {
+			@Override
+			public void run() {
+				Toast.makeText(getContext(), message + "", Toast.LENGTH_SHORT).show();
+			}
+		});
 	}
 }
