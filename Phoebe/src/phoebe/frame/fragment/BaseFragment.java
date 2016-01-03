@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 public class BaseFragment extends Fragment implements AppTitle {
 
-	private TitleMgr titleMgr;
+	private AppTitle appTitle;
 
 	private AppLoading mLoadingDialog;
 
@@ -35,8 +35,8 @@ public class BaseFragment extends Fragment implements AppTitle {
 
 	@Override
 	public void initTitle() {
-		titleMgr = new TitleMgr(getActivity(), getView());
-		titleMgr.initTitle();
+		appTitle = new TitleMgr(getActivity(), getView());
+		appTitle.initTitle();
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class BaseFragment extends Fragment implements AppTitle {
 	 */
 	@Override
 	public void setTitle(TitleRes leftTitle, TitleRes middleTitle, TitleRes rightTitle) {
-		titleMgr.setTitle(leftTitle, middleTitle, rightTitle);
+		appTitle.setTitle(leftTitle, middleTitle, rightTitle);
 	}
 
 	protected View findViewById(int id) {

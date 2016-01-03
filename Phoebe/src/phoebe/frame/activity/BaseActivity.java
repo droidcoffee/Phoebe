@@ -22,7 +22,7 @@ import android.widget.Toast;
  */
 public abstract class BaseActivity extends Activity implements Handler.Callback, AppTitle {
 
-	private TitleMgr titleMgr;
+	private AppTitle appTitle;
 
 	private AppLoading mLoadingDialog;
 
@@ -47,8 +47,8 @@ public abstract class BaseActivity extends Activity implements Handler.Callback,
 
 	@Override
 	public void initTitle() {
-		titleMgr = new TitleMgr(getContext(), findViewById(android.R.id.content));
-		titleMgr.initTitle();
+		appTitle = new TitleMgr(getContext(), findViewById(android.R.id.content));
+		appTitle.initTitle();
 	}
 
 	/**
@@ -60,7 +60,7 @@ public abstract class BaseActivity extends Activity implements Handler.Callback,
 	 */
 	@Override
 	public void setTitle(TitleRes leftTitle, TitleRes middleTitle, TitleRes rightTitle) {
-		titleMgr.setTitle(leftTitle, middleTitle, rightTitle);
+		appTitle.setTitle(leftTitle, middleTitle, rightTitle);
 	}
 
 	/**

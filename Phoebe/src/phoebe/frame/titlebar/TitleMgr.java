@@ -21,6 +21,7 @@ public class TitleMgr implements AppTitle {
 	 * TitleBar的上下文
 	 */
 	private Context context;
+	
 	/**
 	 * TitleBar所在的顶层View容易
 	 */
