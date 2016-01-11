@@ -18,9 +18,12 @@ public class BaseDialog extends Dialog {
 		super(context);
 	}
 
-	public BaseDialog(Context context, int layout) {
-		super(context);
-		setContentView(layout);
+	/**
+	 * 策略设计模式的提现
+	 */
+	@Override
+	public void setContentView(int layoutResID) {
+		super.setContentView(layoutResID);
 	}
 
 	public BaseDialog(Context context, int theme, int layout) {
