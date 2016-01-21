@@ -18,17 +18,17 @@ import phoebe.frame.util.Log;
 import phoebe.frame.util.annotation.Column;
 
 /**
- * Json解析工具
+ * 重构，优化数据类型的返回
  * 
  * @author coffee <br>
- *         2015-12-31 下午9:09:08
+ *         2016-1-5下午3:24:21
  */
-public class JsonParser extends TParser{
+public class JsonParser extends TParser {
 
 	/**
 	 * 默认按照 {@link Column解析}
 	 */
-	private boolean byColumn = true;
+	private static boolean byColumn = true;
 
 	/**
 	 * k : class type <br>
@@ -42,7 +42,7 @@ public class JsonParser extends TParser{
 	 * @param beanClass
 	 * @return
 	 */
-	private synchronized Map<String, Field> getColumnMap(Class<?> beanClass) {
+	private static synchronized Map<String, Field> getColumnMap(Class<?> beanClass) {
 		if (cache.get(beanClass) == null || cache.get(beanClass).size() == 0) {
 			cache.put(beanClass, new HashMap<String, Field>());
 			for (Field field : beanClass.getDeclaredFields()) {
@@ -92,7 +92,7 @@ public class JsonParser extends TParser{
 					if (json.has(attr)) {
 						Object value = json.get(attr);
 						if (i < seg.length) {
-							return get(value.toString(), attr);
+							return get(value.toString(), seg[i + 1]);
 						} else {
 							return value;
 						}
@@ -113,8 +113,8 @@ public class JsonParser extends TParser{
 	 * @param beanClass
 	 * @return
 	 */
-	public <T> T parseWithNoColumn(String jsonStr, Class<T> beanClass) {
-		this.byColumn = false;
+	public static <T> T parseWithNoColumn(String jsonStr, Class<T> beanClass) {
+		byColumn = false;
 		return parse(jsonStr, beanClass);
 	}
 
@@ -126,18 +126,18 @@ public class JsonParser extends TParser{
 	 * @param beanClass
 	 * @return
 	 */
-	public <T> List<T> parseListWithNoColumn(String jsonStr, String attr, Class<T> beanClass) {
-		this.byColumn = false;
+	public static <T> ArrayList<T> parseListWithNoColumn(String jsonStr, String attr, Class<T> beanClass) {
+		byColumn = false;
 		return parseList(jsonStr, attr, beanClass);
 	}
 
-	public <T> List<T> parseList(String jsonStr, Class<T> beanClass) {
+	public static <T> ArrayList<T> parseList(String jsonStr, Class<T> beanClass) {
 		try {
 			if (jsonStr == null || jsonStr.trim().length() == 0) {
 				return null;
 			}
 			JSONArray json = new JSONArray(jsonStr);
-			List<T> arrayObj = parseJsonArray(json, beanClass);
+			ArrayList<T> arrayObj = parse(json, beanClass);
 			return arrayObj;
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -145,15 +145,30 @@ public class JsonParser extends TParser{
 		return null;
 	}
 
-	public <T> List<T> parseList(String jsonStr, String attr, Class<T> beanClass) {
+	/**
+	 * 将jsonStr的attr属性值解析成ArrayList<BeanClass>
+	 * 
+	 * @param jsonStr
+	 * @param attr
+	 *            如果需要解析整个jsonStr 则该属性设置为 null 或者 ""
+	 * @param beanClass
+	 * @return
+	 */
+	public static <T> ArrayList<T> parseList(String jsonStr, String attr, Class<T> beanClass) {
 		try {
 			if (jsonStr == null || jsonStr.trim().length() == 0) {
 				return null;
 			}
-			JSONObject json = new JSONObject(jsonStr);
-			if (json.has(attr)) {
-				List<T> arrayObj = parseJsonArray(json.getJSONArray(attr), beanClass);
+			if (attr == null || attr.trim().length() == 0) {
+				JSONArray jsonArray = new JSONArray(jsonStr);
+				ArrayList<T> arrayObj = parse(jsonArray, beanClass);
 				return arrayObj;
+			} else {
+				JSONObject json = new JSONObject(jsonStr);
+				if (json.has(attr)) {
+					ArrayList<T> arrayObj = parse(json.getJSONArray(attr), beanClass);
+					return arrayObj;
+				}
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -169,7 +184,7 @@ public class JsonParser extends TParser{
 	 * @param beanClass
 	 * @return
 	 */
-	public <T> T parse(String jsonStr, String attr, Class<T> beanClass) {
+	public static <T> T parse(String jsonStr, String attr, Class<T> beanClass) {
 		try {
 			if (jsonStr == null || jsonStr.trim().length() == 0) {
 				return null;
@@ -195,7 +210,7 @@ public class JsonParser extends TParser{
 	 * @param beanClass
 	 * @return
 	 */
-	public <T> T parse(String jsonStr, Class<T> beanClass) {
+	public static <T> T parse(String jsonStr, Class<T> beanClass) {
 		try {
 			if (jsonStr == null || jsonStr.trim().length() == 0) {
 				return null;
@@ -215,7 +230,7 @@ public class JsonParser extends TParser{
 	}
 
 	@SuppressWarnings("unchecked")
-	private <T> T parse(JSONObject json, Class<T> beanClass) {
+	private static <T> T parse(JSONObject json, Class<T> beanClass) {
 		try {
 			T obj = beanClass.newInstance();
 			Map<String, Object> items = new HashMap<String, Object>();
@@ -232,7 +247,7 @@ public class JsonParser extends TParser{
 						if (json.has(columnName)) {
 							Type arrType = field.getGenericType();
 							Class<?> arrClass = type2Class(arrType);
-							Object arrayObj = parseJsonArray(json.getJSONArray(columnName), arrClass);
+							Object arrayObj = parse(json.getJSONArray(columnName), arrClass);
 							field.setAccessible(true);
 							field.set(obj, arrayObj);
 						}
@@ -280,8 +295,8 @@ public class JsonParser extends TParser{
 		return null;
 	}
 
-	private <T> List<T> parseJsonArray(JSONArray jsonArr, Class<T> beanClass) {
-		List<T> lst = new ArrayList<T>();
+	private static <T> ArrayList<T> parse(JSONArray jsonArr, Class<T> beanClass) {
+		ArrayList<T> lst = new ArrayList<T>();
 		for (int i = 0; i < jsonArr.length(); i++) {
 			try {
 				JSONObject jsonObj = jsonArr.getJSONObject(i);
@@ -294,7 +309,7 @@ public class JsonParser extends TParser{
 	}
 
 	@SuppressWarnings("unchecked")
-	private <K> Map<String, K> parse(JSONObject mapJson, Class<?> keyClass, Class<K> valueClass) {
+	private static <K> Map<String, K> parse(JSONObject mapJson, Class<?> keyClass, Class<K> valueClass) {
 		Iterator<String> keys = mapJson.keys();
 		Map<String, K> map = new HashMap<String, K>();
 		while (keys.hasNext()) {
@@ -317,7 +332,7 @@ public class JsonParser extends TParser{
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public <T, V> String toJson(Map<T, V> map) {
+	public static <T, V> String toJson(Map<T, V> map) {
 		if (map.size() == 0) {
 			return "{}";
 		}
