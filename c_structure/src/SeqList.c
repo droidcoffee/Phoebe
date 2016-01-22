@@ -38,8 +38,28 @@ void insertList(struct SeqList * L, int position, DataType data) {
 	L->length++;
 }
 
-void delete(){
-	// test
+/**
+ * 删除SeqList的指定位置position的元素<br>
+ * @param position 从0开始
+ */
+DataType deletelist(struct SeqList * L, int position) {
+	if (position < 0 || position > L->length - 1) {
+		printf("%d \t %s\n", position, "位置非法");
+		return -1;
+	}
+	DataType x = L->data[position];
+	//如果删除的是最后一个问题
+	if (position == L->length) {
+		L->length--;
+	} else {
+		int i;
+		for (i = position; i < L->length; i++) {
+			L->data[i] = L->data[i + 1];
+		}
+		L->length--;
+	}
+	printf("已删除第%d个位置的元素%d \n", position, x);
+	return x;
 }
 
 /**
@@ -67,8 +87,20 @@ void testInsertSeqList() {
 	printSeqList(&s);
 }
 
-int main() {
-	testInsertSeqList();
+/**
+ * 测试删除元素
+ */
+void testDeleteSeqList() {
+	struct SeqList s = { .length = 5, .data = { 1, 3, 5, 7, 9 } };
+	deletelist(&s, -1);
+	deletelist(&s, 6);
+	deletelist(&s, 3);
+	printSeqList(&s);
+}
+
+int main1() {
+	//testInsertSeqList();
+	testDeleteSeqList();
 	return 0;
 }
 
