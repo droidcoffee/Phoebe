@@ -15,6 +15,8 @@ struct LinkNode {
 	struct LinkNode * next;
 };
 
+void printLinkListNohead(struct LinkNode * node);
+
 /**
  * 建立LinkList <br>
  * head插入法<br>
@@ -57,24 +59,161 @@ struct LinkNode * createListR() {
 	return head;
 }
 
+/**
+ * 后插-带头指针
+ */
+struct LinkNode * createListR1() {
+	struct LinkNode * head = (struct LinkNode *) malloc(sizeof(struct LinkNode));
+	struct LinkNode * rear = head;
+	struct LinkNode * p = NULL;
+	char ch = '0';
+	printf("%s", "创建LinkList, 按回车键结束输入\n");
+	while ((ch = getchar()) != '\n') {
+		p = (struct LinkNode *) malloc(sizeof(struct LinkNode));
+		p->data = ch;
+		rear->next = p;
+		rear = p;
+	}
+	printf("%s", "创建结束\n");
+	rear->next = NULL;
+	return head;
+}
+/**
+ *
+ * @param position 从1开始, 其中0是head节点
+ */
+struct LinkNode * getNodeByPosition(struct LinkNode * head, int position) {
+	if (position < 1) {
+		printf("位置非法%d", position);
+		return NULL;
+	}
+	int i = 0;
+	struct LinkNode * p = head->next;
+	while (p != NULL) {
+		i++;
+		if (position == i) {
+			return p;
+		}
+		p = p->next;
+	}
+	return NULL;
+}
+/**
+ * 查找给定值得结点
+ */
+struct LinkNode * getNodeByValue(struct LinkNode * head, DataType data) {
+	struct LinkNode * p = head;
+	while (p->next != NULL) {
+		p = p->next;
+		if (p->data == data) {
+			return p;
+		}
+	}
+	return NULL;
+}
+
+/**
+ * 在指定的位置插入一个新结点，结点值为node<br>
+ * position 从1开始.当为1的时候表示在head结点之后插入，也就是第一个结点
+ */
+void insertLinkList(struct LinkNode * head, int position, DataType data) {
+	if (position < 1) {
+		printf("插入位置非法");
+		return;
+	}
+	struct LinkNode * node = head;
+	struct LinkNode * p;
+	int i = 1;
+	while (node != NULL) {
+		if (i == position) {
+			p = (struct LinkNode *) malloc(sizeof(struct LinkNode));
+			struct LinkNode * tmp = node->next;
+			node->next = p;
+			p->next = tmp;
+			p->data = data;
+			break;
+		}
+		node = node->next;
+		i++;
+	}
+	if (p == NULL) {
+		printf("插入失败");
+	}
+}
+/**
+ * 位置从1开始
+ */
+void deleteLinkNode(struct LinkNode * head, int position) {
+	struct LinkNode * p = head; // p指向position的前一个结点
+	int i = 0;
+	while (p->next != NULL) {
+		i++;
+		if (i == position) {
+			break;
+		} else {
+			p = p->next;
+		}
+	}
+	if (p == NULL) {
+		printf("位置错误, 删除第%d个元素失败\n", position);
+	} else {
+		// 记录要删除的前一个元素
+		struct LinkNode * s = p;
+		p = p->next; //移动要要删除的元素
+		//删除的是最后一个元素
+		if (p == NULL) {
+			s->next = NULL;
+		} else {
+			s->next = p->next;
+		}
+	}
+}
+
+/**
+ * 遍历--带头结点
+ */
 void printLinkList(struct LinkNode * head) {
 	if (head == NULL) {
 		printf("遍历---LInkList == NULL \n");
 		return;
 	}
-	struct LinkNode * node = head;
+	//第一个结点
+	struct LinkNode * node = head->next;
+	printLinkListNohead(node);
+}
+
+/**
+ * 遍历LinkList不带头结点
+ */
+void printLinkListNohead(struct LinkNode * node) {
 	printf("开始遍历LinkList\n");
 	while (node != NULL) {
-		printf("%c ", node->data);
+		printf("%c-", node->data);
 		node = node->next;
 	}
 	printf("遍历结束\n");
 }
 
 int main() {
-	// struct LinkNode * head = createkListF();
-	struct LinkNode * head = createListR();
-	// printf("%c\n", head->data);
+// struct LinkNode * head = createkListF();
+// struct LinkNode * head = createListR();
+	struct LinkNode * head = createListR1();
+
+	printLinkList(head);
+
+	struct LinkNode * secondNode = getNodeByPosition(head, 2);
+	printf("查找第二个元素 -- %c\n", secondNode->data);
+
+	struct LinkNode * eNode = getNodeByValue(head, 'e');
+	printf("查找第二个元素 以及之后的元素\n");
+	printLinkListNohead(eNode);
+
+//	printf("第2个位置插入元素 'x'\n");
+//	insertLinkList(head, 2, 'x');
+//	printLinkList(head);
+
+	printf("第2个位置删除元素\n");
+	deleteLinkNode(head, 0);
 	printLinkList(head);
 	return 0;
 }
