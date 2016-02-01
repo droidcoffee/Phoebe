@@ -182,8 +182,10 @@ public class JsonParser extends TParser {
 	 * @param jsonStr
 	 * @param attr
 	 * @param beanClass
+	 *            支持string类型
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public static <T> T parse(String jsonStr, String attr, Class<T> beanClass) {
 		try {
 			if (jsonStr == null || jsonStr.trim().length() == 0) {
@@ -191,9 +193,14 @@ public class JsonParser extends TParser {
 			}
 			JSONObject json = new JSONObject(jsonStr);
 			if (json.has(attr)) {
-				JSONObject attrObj = json.getJSONObject(attr);
-				T t = parse(attrObj, beanClass);
-				return t;
+				if (beanClass == String.class) {
+					String result = json.getString(attr);
+					return (T) result;
+				} else {
+					JSONObject attrObj = json.getJSONObject(attr);
+					T t = parse(attrObj, beanClass);
+					return t;
+				}
 			} else {
 				return null;
 			}
