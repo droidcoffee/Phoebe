@@ -6,6 +6,7 @@ import phoebe.frame.titlebar.TitleRes;
 import phoebe.sample.activity.HttpDemoActivity;
 import phoebe.sample.activity.JsonDemoActivity;
 import phoebe.sample.activity.LoadingDemoActivity;
+import phoebe.sample.activity.MeasureDemoActivity;
 import phoebe.sample.activity.SystemBarActivity;
 import phoebe.sample.activity.TitleDemoActivity;
 import android.os.Bundle;
@@ -36,6 +37,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 		findViewById(R.id.home_http_sample).setOnClickListener(this);
 		// json解析
 		findViewById(R.id.home_json_sample).setOnClickListener(this);
+		// View onMeasure
+		findViewById(R.id.home_measure_sample).setOnClickListener(this);
+
 		TitleRes left = null;
 		TitleRes middle = new TitleRes("首页标题");
 		TitleRes right = null;
@@ -60,6 +64,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 			break;
 		case R.id.home_json_sample:
 			startActivity(JsonDemoActivity.class);
+			break;
+		case R.id.home_measure_sample:
+			startActivity(MeasureDemoActivity.class);
 			break;
 		}
 

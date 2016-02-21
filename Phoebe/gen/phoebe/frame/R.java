@@ -37,20 +37,22 @@ public final class R {
         public static final int home_http_sample=0x7f08000d;
         public static final int home_json_sample=0x7f08000e;
         public static final int home_loading_sample=0x7f08000c;
+        public static final int home_measure_sample=0x7f08000f;
         public static final int home_systembar_sample=0x7f08000b;
         public static final int home_title_sample=0x7f08000a;
-        public static final int slidingpane_content=0x7f080011;
-        public static final int slidingpane_menu=0x7f080010;
-        public static final int slidingpanellayout=0x7f08000f;
+        public static final int slidingpane_content=0x7f080012;
+        public static final int slidingpane_menu=0x7f080011;
+        public static final int slidingpanellayout=0x7f080010;
     }
     public static final class layout {
         public static final int app_loading=0x7f030000;
         public static final int app_title=0x7f030001;
         public static final int home=0x7f030002;
         public static final int main=0x7f030003;
-        public static final int setting=0x7f030004;
-        public static final int systembar_demo=0x7f030005;
-        public static final int title_demo=0x7f030006;
+        public static final int measure=0x7f030004;
+        public static final int setting=0x7f030005;
+        public static final int systembar_demo=0x7f030006;
+        public static final int title_demo=0x7f030007;
     }
     public static final class string {
         public static final int action_settings=0x7f060002;
