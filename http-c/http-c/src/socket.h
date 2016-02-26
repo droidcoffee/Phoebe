@@ -98,7 +98,7 @@ char *getHtml(const char* host, int port, const char * query) {
 			htmlcontent = buf;
 		}
 		if (htmlstart) {
-			printf("--- %s\n", htmlcontent);
+			printf("%s\n", htmlcontent);
 			// 拷贝字符串
 			newHtml = (char*) malloc(sizeof(char) * strlen(htmlcontent));
 			strcpy(newHtml, htmlcontent);

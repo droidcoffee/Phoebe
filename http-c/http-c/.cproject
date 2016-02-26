@@ -84,9 +84,7 @@
 								<option id="gnu.cpp.compiler.option.preprocessor.def.483293655" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="CURL_STATILIB"/>
 								</option>
-								<option id="gnu.cpp.compiler.option.include.paths.807287705" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="F:/curllib/include"/>
-								</option>
+								<option id="gnu.cpp.compiler.option.include.paths.807287705" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath"/>
 								<option id="gnu.cpp.compiler.option.dialect.std.387815613" name="Language standard" superClass="gnu.cpp.compiler.option.dialect.std" value="gnu.cpp.compiler.dialect.default" valueType="enumerated"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1321584545" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -99,12 +97,10 @@
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.mingw.exe.release.282244041" name="MinGW C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.mingw.exe.release"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.mingw.exe.release.834855163" name="MinGW C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.mingw.exe.release">
 								<option id="gnu.cpp.link.option.libs.326077970" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
-									<listOptionValue builtIn="false" value="curl"/>
-									<listOptionValue builtIn="false" value="ws2_32"/>
-									<listOptionValue builtIn="false" value="wldap32"/>
+									<listOptionValue builtIn="false" value="json_mingw_libmt"/>
 								</option>
 								<option id="gnu.cpp.link.option.paths.1747849186" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
-									<listOptionValue builtIn="false" value="&quot;F:/curllib&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;E:\git\jsoncpp\buildscons\mingw\src\lib_json&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.360783559" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
