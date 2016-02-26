@@ -12,7 +12,6 @@ int main(int argc, char *argv[]) {
 //	char* html = getHtml("182.92.190.64", 8010, "guoer-appserv/profile?userId=28&device=1&version=3000");
 //	printf("\n----%s\n", html);
 //	printf("%d", strlen(html));
-	//char * content = "{"message":"success","result":{"id":28,"name":"王涛","phone":"15210788660","shbUserId":847383},"status":"1"}";
 
 	printf("hello world");
 
