@@ -2,35 +2,38 @@
 #include <string>
 #include <iostream>
 #include <json/json.h>
-#include "JSON.h"
+#include "socket.h"
+#include "bean/JSON.h"
+#include "bean/UserBean.h"
 
 using namespace std;
 
 int main(int argc, char *argv[]) {
-	//warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
-	//get("182.92.190.64", 8010, "guoer-appserv/index?device=1&version=3000");
-//	char* html = getHtml("182.92.190.64", 8010, "guoer-appserv/profile?userId=28&device=1&version=3000");
-//	printf("\n----%s\n", html);
-//	printf("%d", strlen(html));
 
-	printf("hello world");
+	//warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+//	//get("182.92.190.64", 80, "guoer-appserv/index?device=1&version=3000");
+	char* html = getHtml("182.92.190.64", 80, "guoer-appserv/profile?userId=28&device=1&version=3000");
+//	printf("\n----%s\n", html);
 
 	JSON json;
-	string message = "hello 12434";
-	json.setMessage(message);
 
-	// printf("%s", json.getMessage());
-	cout << json.getMessage() << endl;
-
-	std::string strValue = "{\"key1\":\"value1\",\"array\":[{\"key2\":\"value2\"},{\"key2\":\"value3\"},{\"key2\":\"value4\"}]}";
+	cout << json.getMessage() << "\t" << json.getStatus() << endl;
 
 	Json::Reader reader;
 	Json::Value value;
+	string htmlStr(html);
+	if (reader.parse(htmlStr, value)) {
+		string message = value["message"].asString();
+		string status = value["status"].asString();
+		cout << status << "\t" << message << endl;
+		json.setMessage(message);
+		const Json::Value data = value["result"];
+		int userId = data["id"].asInt();
+		string name = data["name"].asString();
+		string phone = data["phone"].asString();
+		int shbUserId = data["shbUserId"].asInt();
+		UserBean user;
 
-	if (reader.parse(strValue, value)) {
-		std::string out = value["key1"].asString();
-		std::cout << out << std::endl;
-//		const Json::Value arrayObj = value["array"];
 //		for (int i = 0; i < arrayObj.size(); i++) {
 //			out = arrayObj[i]["key2"].asString();
 //			std::cout << out;

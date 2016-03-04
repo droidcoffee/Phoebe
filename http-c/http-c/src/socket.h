@@ -1,5 +1,5 @@
-//#ifndef SOCKET_H
-//#define SOCKET_H
+#ifndef SOCKET_H
+#define SOCKET_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -130,4 +130,4 @@ char *build_get_query(const char *host, const char *page) {
 	return query;
 }
 
-//#endif
+#endif
