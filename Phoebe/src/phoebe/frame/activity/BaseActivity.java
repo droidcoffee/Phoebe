@@ -4,7 +4,6 @@ import phoebe.frame.PhoebeApp;
 import phoebe.frame.dialog.AppLoading;
 import phoebe.frame.titlebar.AppTitle;
 import phoebe.frame.titlebar.TitleMgr;
-import phoebe.frame.titlebar.TitleRes;
 import phoebe.frame.util.ActivityMgr;
 import android.app.Activity;
 import android.content.Context;
@@ -20,7 +19,7 @@ import android.widget.Toast;
  * @author coffee <br>
  *         2015-12-17 下午11:27:53
  */
-public abstract class BaseActivity extends Activity implements Handler.Callback, AppTitle {
+public abstract class BaseActivity extends Activity implements Handler.Callback {
 
 	private AppTitle appTitle;
 
@@ -42,25 +41,16 @@ public abstract class BaseActivity extends Activity implements Handler.Callback,
 	 * 初始化title View
 	 */
 	protected void findViewById() {
-		initTitle();
-	}
-
-	@Override
-	public void initTitle() {
 		appTitle = new TitleMgr(getContext(), findViewById(android.R.id.content));
 		appTitle.initTitle();
 	}
 
-	/**
-	 * 设置app的title栏
-	 * 
-	 * @param leftTitle
-	 * @param middleTitle
-	 * @param rightTitle
-	 */
-	@Override
-	public void setTitle(TitleRes leftTitle, TitleRes middleTitle, TitleRes rightTitle) {
-		appTitle.setTitle(leftTitle, middleTitle, rightTitle);
+	protected void setAppTitle(AppTitle appTitle) {
+		this.appTitle = appTitle;
+	}
+
+	protected AppTitle getAppTitle() {
+		return this.appTitle;
 	}
 
 	/**

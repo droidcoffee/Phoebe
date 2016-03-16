@@ -3,7 +3,6 @@ package phoebe.frame.fragment;
 import phoebe.frame.dialog.AppLoading;
 import phoebe.frame.titlebar.AppTitle;
 import phoebe.frame.titlebar.TitleMgr;
-import phoebe.frame.titlebar.TitleRes;
 import phoebe.frame.util.Log;
 import android.app.Fragment;
 import android.content.Intent;
@@ -13,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-public class BaseFragment extends Fragment implements AppTitle {
+public class BaseFragment extends Fragment {
 
 	private AppTitle appTitle;
 
@@ -30,25 +29,8 @@ public class BaseFragment extends Fragment implements AppTitle {
 		super.onViewCreated(view, savedInstanceState);
 		Log.d("fragment:onCreateView", getView());
 		//
-		initTitle();
-	}
-
-	@Override
-	public void initTitle() {
 		appTitle = new TitleMgr(getActivity(), getView());
 		appTitle.initTitle();
-	}
-
-	/**
-	 * 设置标题栏
-	 * 
-	 * @param leftTitle
-	 * @param middleTitle
-	 * @param rightTitle
-	 */
-	@Override
-	public void setTitle(TitleRes leftTitle, TitleRes middleTitle, TitleRes rightTitle) {
-		appTitle.setTitle(leftTitle, middleTitle, rightTitle);
 	}
 
 	protected View findViewById(int id) {
@@ -85,5 +67,14 @@ public class BaseFragment extends Fragment implements AppTitle {
 		Intent intent = new Intent();
 		intent.setClass(getActivity(), cls);
 		super.startActivity(intent);
+	}
+	
+
+	public AppTitle getAppTitle() {
+		return appTitle;
+	}
+
+	public void setAppTitle(AppTitle appTitle) {
+		this.appTitle = appTitle;
 	}
 }

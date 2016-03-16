@@ -19,5 +19,5 @@ public interface AppTitle {
 	 * @param middleTitle
 	 * @param rightTitle
 	 */
-	public void setTitle(TitleRes leftTitle, TitleRes middleTitle, TitleRes rightTitle);
+	public AppTitle setTitle(TitleRes leftTitle, TitleRes middleTitle, TitleRes rightTitle);
 }

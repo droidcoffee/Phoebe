@@ -21,7 +21,7 @@ public class TitleMgr implements AppTitle {
 	 * TitleBar的上下文
 	 */
 	private Context context;
-	
+
 	/**
 	 * TitleBar所在的顶层View容易
 	 */
@@ -57,7 +57,7 @@ public class TitleMgr implements AppTitle {
 	}
 
 	@Override
-	public void setTitle(TitleRes leftTitle, TitleRes middleTitle, TitleRes rightTitle) {
+	public AppTitle setTitle(TitleRes leftTitle, TitleRes middleTitle, TitleRes rightTitle) {
 		TitleRes[] reses = new TitleRes[] { leftTitle, middleTitle, rightTitle };
 		for (int i = 0; i < reses.length; i++) {
 			TitleRes res = reses[i];
@@ -87,5 +87,6 @@ public class TitleMgr implements AppTitle {
 				clickView.setOnClickListener(res.getClickListener());
 			}
 		}
+		return this;
 	}
 }

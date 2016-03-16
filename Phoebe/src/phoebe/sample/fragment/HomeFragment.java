@@ -44,7 +44,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 		TitleRes middle = new TitleRes("首页标题");
 		TitleRes right = null;
 
-		setTitle(left, middle, right);
+		getAppTitle().setTitle(left, middle, right);
 	}
 
 	@Override

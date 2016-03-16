@@ -26,6 +26,6 @@ public class SystemBarActivity extends BaseActivity {
 		// SystemBarConfig.setWindowFlags(this);
 		setContentView(R.layout.systembar_demo);
 		super.findViewById();
-		setTitle(null, new TitleRes("沉浸式状态栏演示"), null);
+		getAppTitle().setTitle(null, new TitleRes("沉浸式状态栏演示"), null);
 	}
 }

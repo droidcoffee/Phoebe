@@ -49,7 +49,7 @@ public class TitleDemoActivity extends BaseActivity {
 			}
 		});
 		//
-		setTitle(left, middle, right);
+		getAppTitle().setTitle(left, middle, right);
 	}
 
 }
