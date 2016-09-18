@@ -1,8 +1,10 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
-    <style name="AppBaseTheme" parent="android:Theme.Light">
-    </style>
-    <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme"> <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    <style name="AppBaseTheme" parent="android:Theme.Light"></style>
+    <style name="AppTheme" parent="AppBaseTheme"></style>
+    <style name="app_layout_style">
+        <!-- 如果不加这个属性, layout布局会从状态栏开始 一直充满到导航栏 -->
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:clipToPadding">true</item>
     </style>
     <!-- app标题栏样式 -->
     <style name="app_title_style">

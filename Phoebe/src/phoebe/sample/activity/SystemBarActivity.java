@@ -18,7 +18,7 @@ public class SystemBarActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 //		SystemBarConfig.setStatusBarStyle(this, android.R.color.holo_red_light);
-		SystemBarConfig.setWindowFlags(this);
+		SystemBarConfig.showSystemStatusBar(this, android.R.color.holo_red_light);
 	}
 
 	@Override

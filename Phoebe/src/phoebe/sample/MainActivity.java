@@ -43,10 +43,12 @@ public class MainActivity extends BaseActivity implements PanelSlideListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		instance = this;
-		SystemBarConfig.setWindowFlags(this);//
 		super.onCreate(savedInstanceState);
+		SystemBarConfig.showSystemStatusBar(this, android.R.color.holo_red_light);
 		final Window win = getWindow();
 		win.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+		
+		//SystemBarConfig.setInsets(this, win.getDecorView());
 	}
 	
 	@Override

@@ -61,10 +61,10 @@ public final class R {
     }
     public static final class style {
         public static final int AppBaseTheme=0x7f070002;
-        /**  Application theme. 
- All customizations that are NOT specific to a particular API-level can go here. 
-         */
         public static final int AppTheme=0x7f070003;
+        /**  通用的layout的样式 
+         */
+        public static final int app_layout_style=0x7f070004;
         /**  对话框 布局样式 
  子类需要设置dialog的background 
          */
@@ -74,6 +74,6 @@ public final class R {
         public static final int app_loading_theme=0x7f070000;
         /**  app标题栏样式 
          */
-        public static final int app_title_style=0x7f070004;
+        public static final int app_title_style=0x7f070005;
     }
 }
