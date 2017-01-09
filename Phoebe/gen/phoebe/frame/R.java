@@ -9,6 +9,52 @@ package phoebe.frame;
 
 public final class R {
     public static final class attr {
+        /**  背景环的颜色 
+         <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int mpc_default_color=0x7f010004;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int mpc_end_color=0x7f010003;
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int mpc_percent=0x7f010000;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int mpc_start_color=0x7f010002;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int mpc_stroke_width=0x7f010001;
     }
     public static final class color {
         public static final int app_status_bar_bg=0x7f040000;
@@ -62,8 +108,6 @@ public final class R {
     public static final class style {
         public static final int AppBaseTheme=0x7f070002;
         public static final int AppTheme=0x7f070003;
-        /**  通用的layout的样式 
-         */
         public static final int app_layout_style=0x7f070004;
         /**  对话框 布局样式 
  子类需要设置dialog的background 
@@ -76,4 +120,105 @@ public final class R {
          */
         public static final int app_title_style=0x7f070005;
     }
+    public static final class styleable {
+        /**  渐变颜色的环形进度条 
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #MagicProgressCircle_mpc_default_color phoebe.frame:mpc_default_color}</code></td><td> 背景环的颜色 </td></tr>
+           <tr><td><code>{@link #MagicProgressCircle_mpc_end_color phoebe.frame:mpc_end_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #MagicProgressCircle_mpc_percent phoebe.frame:mpc_percent}</code></td><td></td></tr>
+           <tr><td><code>{@link #MagicProgressCircle_mpc_start_color phoebe.frame:mpc_start_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #MagicProgressCircle_mpc_stroke_width phoebe.frame:mpc_stroke_width}</code></td><td></td></tr>
+           </table>
+           @see #MagicProgressCircle_mpc_default_color
+           @see #MagicProgressCircle_mpc_end_color
+           @see #MagicProgressCircle_mpc_percent
+           @see #MagicProgressCircle_mpc_start_color
+           @see #MagicProgressCircle_mpc_stroke_width
+         */
+        public static final int[] MagicProgressCircle = {
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003,
+            0x7f010004
+        };
+        /**
+          <p>
+          @attr description
+           背景环的颜色 
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name phoebe.frame:mpc_default_color
+        */
+        public static final int MagicProgressCircle_mpc_default_color = 4;
+        /**
+          <p>This symbol is the offset where the {@link phoebe.frame.R.attr#mpc_end_color}
+          attribute's value can be found in the {@link #MagicProgressCircle} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name phoebe.frame:mpc_end_color
+        */
+        public static final int MagicProgressCircle_mpc_end_color = 3;
+        /**
+          <p>This symbol is the offset where the {@link phoebe.frame.R.attr#mpc_percent}
+          attribute's value can be found in the {@link #MagicProgressCircle} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name phoebe.frame:mpc_percent
+        */
+        public static final int MagicProgressCircle_mpc_percent = 0;
+        /**
+          <p>This symbol is the offset where the {@link phoebe.frame.R.attr#mpc_start_color}
+          attribute's value can be found in the {@link #MagicProgressCircle} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name phoebe.frame:mpc_start_color
+        */
+        public static final int MagicProgressCircle_mpc_start_color = 2;
+        /**
+          <p>This symbol is the offset where the {@link phoebe.frame.R.attr#mpc_stroke_width}
+          attribute's value can be found in the {@link #MagicProgressCircle} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name phoebe.frame:mpc_stroke_width
+        */
+        public static final int MagicProgressCircle_mpc_stroke_width = 1;
+    };
 }
